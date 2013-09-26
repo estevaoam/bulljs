@@ -98,14 +98,14 @@ Extending validation functions
 You can easily extend the default validation functions by calling
 `Bull.defineRule()` method, check out this example:
 
-Bull.defineRule('maximum', function(field, arg){
-  var number = arg.number || arg;
-  var message = arg.message || "Deve ser menor do que " + number;
+    Bull.defineRule('maximum', function(field, arg){
+      var number = arg.number || arg;
+      var message = arg.message || "Deve ser menor do que " + number;
 
-  if (field.val().length > number) {
-    this.addError(field, message);
-  }
-});
+      if (field.val().length > number) {
+        this.addError(field, message);
+      }
+    });
 
 
 TODO
