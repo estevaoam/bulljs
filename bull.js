@@ -142,7 +142,10 @@ Bull.defineRule('maximum', function(field, arg){
 // Validating form
 $.fn.validateForm = function(rules, errorHandler){
   this.bind('submit', function(e){
-    var errorHandler = errorHandler || DefaultErrorHandler;
+    if (errorHandler == undefined) {
+      errorHandler = DefaultErrorHandler;
+    }
+
     var result = Bull.init(this, errorHandler).validate(rules);
 
     if (result === false) {
