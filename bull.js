@@ -21,7 +21,7 @@ var DefaultErrorHandler = {
       errorElement +=  errors[selector][0];
       errorElement += '</div>';
 
-      errorElement = $(errorElement).addClass('validator-error-message');
+      errorElement = $(errorElement).addClass('bull-error-message');
 
       field.addClass('input-error').parent('div').after($(errorElement));
     }
