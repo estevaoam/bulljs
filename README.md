@@ -31,7 +31,7 @@ Bull adds the `validateForm()` method to your jQuery objects,
 it accepts two arguments:
 
 1. Rules
-2. Error message handler
+2. Options (handlers and callbacks)
 
 Rules
 -----
@@ -91,6 +91,28 @@ where the key is the selector of the field that failed the validation
 and the value is an Array of messages.
 
 `this.form` is the jQuery object of the form being validated.
+
+You can pass this custom handler as an option of the second argument:
+
+    $('form').validateForm({ ... }, {
+      errorHandler: myCustomErrorHandler
+    });
+
+
+Callbacks
+--------
+
+Currently there is a success callback that is called when the validation is succeeded and the form is ready to submit.
+You can define it passing a function as an attribute of the options hash:
+
+    $('form').validateForm({ ... }, {
+      onSuccess: function(){
+        ...
+      }
+    });
+
+The context(`this`) of the function is the HTML DOM object of the form, so you can access normally using jQuery (`$(this)`).
+
 
 Extending validation functions
 ------------------------------

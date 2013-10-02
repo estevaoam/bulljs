@@ -140,15 +140,21 @@ Bull.defineRule('maximum', function(field, arg){
 });
 
 // Validating form
-$.fn.validateForm = function(rules, errorHandler){
+$.fn.validateForm = function(rules, options){
   this.bind('submit', function(e){
-    if (errorHandler == undefined) {
-      errorHandler = DefaultErrorHandler;
+    if (options == undefined) {
+      options = {};
     }
+
+    // Callbacks and handlers
+    options.errorHandler = options.errorHandler || DefaultErrorHandler;
+    options.onSuccess    = options.onSuccess || function(){};
 
     var result = Bull.init(this, errorHandler).validate(rules);
 
-    if (result === false) {
+    if (result === true) {
+      options.onSuccess.call(this);
+    } else {
       e.preventDefault();
     }
   });
